@@ -8,16 +8,42 @@
  */
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <string>
 #include "graphics.h"
+#include "globals.h"
 
 //Constructor
 Graphics::Graphics() {
-	SDL_CreateWindowAndRenderer(640, 480, 0, &this->_window, &this->_renderer);
-	SDL_SetWindowTitle(this->_window, "Cavestory Remake C++");
+	SDL_CreateWindowAndRenderer(globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT, 0, &this->window_, &this->renderer_);
+	SDL_SetWindowTitle(this->window_, "Cavestory Remake C++");
 }
 
 //Desctructor
 Graphics::~Graphics() {
-	SDL_DestroyWindow(this->_window);
-	SDL_DestroyRenderer(this->_renderer);
+	SDL_DestroyWindow(this->window_);
+	SDL_DestroyRenderer(this->renderer_);
+}
+
+SDL_Surface* Graphics::loadImage(const std::string &filePath) {
+	if (this->spriteSheets_.count(filePath) == 0) {
+		this->spriteSheets_[filePath] = IMG_Load(filePath.c_str());
+	}
+	return this->spriteSheets_[filePath];
+}
+
+void Graphics::blitSurface(SDL_Texture* texture, SDL_Rect* sourceRectangle, SDL_Rect* destinationRectangle) {
+	SDL_RenderCopy(this->renderer_, texture, sourceRectangle, destinationRectangle);
+}
+
+void Graphics::flip() {
+	SDL_RenderPresent(this->renderer_);
+}
+
+void Graphics::clear() {
+	SDL_RenderClear(this->renderer_);
+}
+
+SDL_Renderer* Graphics::getRenderer() const {
+	return this->renderer_;
 }
