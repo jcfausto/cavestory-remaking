@@ -1,0 +1,17 @@
+===================
+Problem
+===================
+	- Create a game class to hold the game loop
+		- Listen for events in the game loop
+			- Inputs to close the window. 
+		- Create a skeleton for the game class
+
+===================
+Details
+===================
+TBD
+	
+===================
+Solution
+===================
+TBD

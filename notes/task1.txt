@@ -1,0 +1,17 @@
+===================
+Problem
+===================
+	- We need a window on the screen to draw our game to
+
+===================
+Details
+===================
+	- We'll have a class dedicated entirely to graphics
+	- Cavestry's resolution is 640x480
+	
+===================
+Solution
+===================
+	- Split up headers / implementation files
+	- Create graphics class
+	- Call it from main (from now)
