@@ -5,14 +5,9 @@
  *      Author: jcfausto
  */
 
-#include "graphics.h"
-#include <stdio.h>
+#include "game.h"
 
 int main(int argc, char *argv[]) {
-	Graphics graphics;
-	while(true) {
-
-	}
-	printf("exit\n");
+	Game game;
 	return 0;
 }

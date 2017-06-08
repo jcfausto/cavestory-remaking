@@ -1,4 +1,10 @@
 ===================
+Remaking Cavestory in C++
+Task 1
+Github:
+===================
+
+===================
 Problem
 ===================
 	- We need a window on the screen to draw our game to

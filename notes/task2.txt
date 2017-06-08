@@ -1,17 +1,27 @@
 ===================
+Remaking Cavestory in C++
+Task 2
+Github:
+===================
+
+===================
 Problem
 ===================
 	- Create a game class to hold the game loop
 		- Listen for events in the game loop
 			- Inputs to close the window. 
 		- Create a skeleton for the game class
+	- Limiting FPS
 
 ===================
 Details
 ===================
-TBD
+	- Cavestory runs at 50 FPS
 	
 ===================
 Solution
 ===================
-TBD
+	- Create the game class and implement it
+	- Create the input class and implement it
+	- Add input to game loop
+	- Limit FPS
