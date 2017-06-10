@@ -16,7 +16,10 @@ namespace globals {
 
 	const float SPRITE_SCALE = 2.0f;
 
-	const std::string SPRITE_SHEET_QUOTE = "content/sprites/MyChar.png";
+	const std::string CONTENT_SPRITES_MYCHAR = "content/sprites/MyChar.png";
+	const std::string CONTENT_BACKGROUNDS_BKBLUE = "content/backgrounds/bkBlue.png";
+
+	const std::string MAPS_MAP_1 = "Map 1";
 
 	const std::string ANIMATION_IDLE_LEFT = "IdleLeft";
 	const std::string ANIMATION_IDLE_RIGHT = "IdleRight";

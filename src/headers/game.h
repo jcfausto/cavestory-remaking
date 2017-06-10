@@ -9,6 +9,7 @@
 #define HEADERS_GAME_H_
 
 #include "player.h"
+#include "level.h"
 #include "graphics.h"
 
 class Game {
@@ -20,13 +21,26 @@ class Game {
 		//This is the main game loop
 		void gameLoop();
 
-		//This is the method for drawing on the screen
+		/* void draw
+		 * Draw the new frame on the screen
+		 */
 		void draw(Graphics &graphics);
 
-		//This is the method for framing update
+
+		/* void update
+		 * Each time a new frame starts, this method will be called
+		 */
 		void update(float elapsedTime);
 
+		/* player_
+		 * Represents the player
+		 */
 		Player player_;
+
+		/* level_
+		 * Represents the current level
+		 */
+		Level level_;
 };
 
 #endif /* HEADERS_GAME_H_ */

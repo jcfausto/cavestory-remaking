@@ -1,0 +1,27 @@
+===================
+Remaking Cavestory in C++
+Task 6
+Github:
+===================
+
+===================
+Problem
+===================
+	- We need a way to represent a "Level" or a "Map"
+	- We need to draw a background on the screen
+
+===================
+Details
+===================
+	- Background is bkBlue
+	- Backgrounds are 64x64 pixels
+
+	
+===================
+Solution
+===================
+	- Create the level class
+	- Create a new directory content/backgrounds
+	- Convert bkBlue.pbm to bkBlue.png
+	- Add the level to the game class
+	- Fix Quote's transparency

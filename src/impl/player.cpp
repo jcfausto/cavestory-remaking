@@ -16,9 +16,9 @@ namespace player_constants {
 Player::Player(){}
 
 Player::Player(Graphics &graphics, float x, float y) :
-	AnimatedSprite(graphics, globals::SPRITE_SHEET_QUOTE, 0, 0, 16, 16, x, y, 100)
+	AnimatedSprite(graphics, globals::CONTENT_SPRITES_MYCHAR, 0, 0, 16, 16, x, y, 100)
 {
-	graphics.loadImage(globals::SPRITE_SHEET_QUOTE);
+	graphics.loadImage(globals::CONTENT_SPRITES_MYCHAR);
 	this->setupAnimations();
 	this->playAnimation(globals::ANIMATION_RUN_RIGHT);
 }
