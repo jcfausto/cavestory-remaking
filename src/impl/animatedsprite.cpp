@@ -107,6 +107,7 @@ void AnimatedSprite::animationDone(std::string currentAnimation) {}
 
 //TEMP until the player class is implemented
 void AnimatedSprite::setupAnimations() {
-	this->addAnimation(3, 0, 0, "RunLeft", 16, 16, Vector2(0,0));
+	this->addAnimation(3, 0, 0, globals::ANIMATION_RUN_LEFT, 16, 16, Vector2(0,0));
+	this->addAnimation(3, 0, 16, globals::ANIMATION_RUN_RIGHT, 16, 16, Vector2(0,0));
 }
 

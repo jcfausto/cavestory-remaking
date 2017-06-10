@@ -17,6 +17,8 @@ namespace globals {
 	const float SPRITE_SCALE = 2.0f;
 
 	const std::string ANIMATION_RUN_LEFT = "RunLeft";
+	const std::string ANIMATION_RUN_RIGHT = "RunRight";
+
 }
 
 struct Vector2 {
