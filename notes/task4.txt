@@ -1,0 +1,34 @@
+===================
+Remaking Cavestory in C++
+Task 4
+Github:
+===================
+
+===================
+Problem
+===================
+	- We need to animate our sprites
+		- More specifically, for right now, Quote
+
+===================
+Details
+===================
+	- Quote's running animation has 3 frames each.
+
+	
+===================
+Solution
+===================
+	- Fix global width variable
+	- Create global Vector2 struct
+	- Create the animated sprite class (extends off of sprite)
+	- Use animated sprite in the game class instead of sprite
+	- Match Quote run endlessly
+
+	
+===================
+Remarks
+===================
+	- Debugging on Windows was quite challenging. You need to disable some
+		hints in order to be able to debug on Windows with Eclipse.
+	- There's a lot of things to refactor later. Also adding some tests is a must! 

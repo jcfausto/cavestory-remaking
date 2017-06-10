@@ -23,10 +23,12 @@ public:
 	virtual ~Sprite();
 	virtual void update();
 	void draw(Graphics &graphics, int x, int y);
-private:
+
+protected:
 	SDL_Rect sourceRectangle_;
 	SDL_Texture* spriteSheet_;
 
+private:
 	float x_, y_;
 };
 

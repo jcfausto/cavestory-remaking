@@ -8,8 +8,10 @@
 #ifndef HEADERS_GRAPHICS_H_
 #define HEADERS_GRAPHICS_H_
 
+#include <SDL2/SDL.h>
 #include <map>
 #include <string>
+
 
 //By declaring this struct, I am able to not
 //include the SDL headers here and delay this
