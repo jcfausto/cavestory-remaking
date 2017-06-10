@@ -33,10 +33,7 @@ void Game::gameLoop() {
 	Input input;
 	SDL_Event event; //Will handle events
 
-	this->player_ = AnimatedSprite(graphics, "content/sprites/MyChar.png", 0, 0, 16, 16, 100, 100, 100);
-	this->player_.setupAnimations();
-
-	this->player_.playAnimation(globals::ANIMATION_RUN_RIGHT);
+	this->player_ = Player(graphics, 100, 100);
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 	//Start the game loop
@@ -71,6 +68,20 @@ void Game::gameLoop() {
 			return;
 		}
 
+		//Will move left
+		else if (input.wasKeyPressed(SDL_SCANCODE_LEFT) == true) {
+			this->player_.moveLeft();
+		}
+
+		//Will move right
+		else if (input.wasKeyPressed(SDL_SCANCODE_RIGHT) == true) {
+			this->player_.moveRight();
+		}
+
+		if (!input.isKeyHeld(SDL_SCANCODE_LEFT) && !input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
+			this->player_.stopMoving();
+		}
+
 		const int CURRENT_TIME_MS = SDL_GetTicks();
 		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME; //Stores how long this current frame took
 		this->update(std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME));
@@ -83,7 +94,7 @@ void Game::gameLoop() {
 void Game::draw(Graphics &graphics) {
 	graphics.clear();
 
-	this->player_.draw(graphics, 100, 100);
+	this->player_.draw(graphics);
 
 	graphics.flip();
 }

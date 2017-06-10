@@ -16,10 +16,20 @@ namespace globals {
 
 	const float SPRITE_SCALE = 2.0f;
 
+	const std::string SPRITE_SHEET_QUOTE = "content/sprites/MyChar.png";
+
+	const std::string ANIMATION_IDLE_LEFT = "IdleLeft";
+	const std::string ANIMATION_IDLE_RIGHT = "IdleRight";
 	const std::string ANIMATION_RUN_LEFT = "RunLeft";
 	const std::string ANIMATION_RUN_RIGHT = "RunRight";
-
 }
+
+enum Direction {
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN
+};
 
 struct Vector2 {
 	int x, y;

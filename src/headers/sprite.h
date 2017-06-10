@@ -28,8 +28,8 @@ protected:
 	SDL_Rect sourceRectangle_;
 	SDL_Texture* spriteSheet_;
 
-private:
 	float x_, y_;
+private:
 };
 
 #endif /* HEADERS_SPRITE_H_ */

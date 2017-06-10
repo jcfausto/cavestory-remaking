@@ -1,0 +1,34 @@
+===================
+Remaking Cavestory in C++
+Task 5
+Github:
+===================
+
+===================
+Problem
+===================
+	- We need a class to hold the Player object
+	- The player needs to be able to move around the screen
+		- Changinc direction
+
+===================
+Details
+===================
+	- Player timeToUpdate = 100 looks good.
+	- We'll start out facing right for now.
+
+	
+===================
+Solution
+===================
+	- Make setupAnimations "protected" in AnimatedSprite
+	- Make setupAnimations and animationDone pure virtual in AnimatedSprite
+	- Create the Player class and get everything working as it is now
+	- Add global enum for direction (which way Quote is facing)
+	- Add two new animations: IdleLeft and IdleRight
+	- Add movement to the player clas
+	- User the movement functions in the game class with input. 
+	
+===================
+Remarks
+===================

@@ -8,7 +8,7 @@
 #ifndef HEADERS_GAME_H_
 #define HEADERS_GAME_H_
 
-#include "animatedsprite.h"
+#include "player.h"
 #include "graphics.h"
 
 class Game {
@@ -26,7 +26,7 @@ class Game {
 		//This is the method for framing update
 		void update(float elapsedTime);
 
-		AnimatedSprite player_;
+		Player player_;
 };
 
 #endif /* HEADERS_GAME_H_ */
