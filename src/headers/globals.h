@@ -19,6 +19,9 @@ namespace globals {
 	const std::string CONTENT_SPRITES_MYCHAR = "content/sprites/MyChar.png";
 	const std::string CONTENT_BACKGROUNDS_BKBLUE = "content/backgrounds/bkBlue.png";
 
+	const std::string CONTENT_TILESETS = "content/tilesets/";
+	const std::string CONTENT_MAPS = "content/maps/";
+
 	const std::string MAPS_MAP_1 = "Map 1";
 
 	const std::string ANIMATION_IDLE_LEFT = "IdleLeft";

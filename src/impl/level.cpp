@@ -41,10 +41,10 @@ void Level::draw(Graphics &graphics) {
 
 	for (int x = 0; x < this->size_.x / 64; x++) {
 		for (int y = 0; y < this->size_.y / 64; y++) {
-			destRect.x = x * 64;
-			destRect.y = y * 64;
-			destRect.w = 64;
-			destRect.h = 64;
+			destRect.x = x * 64 * globals::SPRITE_SCALE;
+			destRect.y = y * 64 * globals::SPRITE_SCALE;
+			destRect.w = 64 * globals::SPRITE_SCALE;
+			destRect.h = 64 * globals::SPRITE_SCALE;
 			graphics.blitSurface(this->backgroundTexture_, &sourceRect, &destRect);
 		}
 	}
