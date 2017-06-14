@@ -11,12 +11,20 @@
 
 namespace player_constants {
 	const float WALK_SPEED = 0.2f;
+
+	//Gravity related constants
+	const float GRAVITY = 0.002f;
+	const float GRAVITY_CAP = 0.8f;
 }
 
 Player::Player(){}
 
 Player::Player(Graphics &graphics, float x, float y) :
-	AnimatedSprite(graphics, globals::CONTENT_SPRITES_MYCHAR, 0, 0, 16, 16, x, y, 100)
+	AnimatedSprite(graphics, globals::CONTENT_SPRITES_MYCHAR, 0, 0, 16, 16, x, y, 100),
+	dx_(0),
+	dy_(0),
+	facing_(RIGHT),
+	grounded_(false)
 {
 	graphics.loadImage(globals::CONTENT_SPRITES_MYCHAR);
 	this->setupAnimations();
@@ -57,7 +65,26 @@ void Player::stopMoving() {
 void Player::animationDone(std::string currentAnimation) {}
 
 void Player::update(float elapsedTime) {
-	this->x_ += this->dx_ * elapsedTime; //This is what actually will move the character on the screen
+	//Apply gravity
+	if (this->dy_  <= player_constants::GRAVITY_CAP) {
+		this->dy_ += player_constants::GRAVITY * elapsedTime;
+	}
+
+	//This is what actually will move the character on the screen
+	//Move by dx_
+	this->x_ += this->dx_ * elapsedTime;
 	AnimatedSprite::update(elapsedTime);
+
+	//Move by dy_
+	this->y_ += this->dy_ * elapsedTime;
 }
+
+const float Player::getX() const {
+	return this->x_;
+}
+
+const float Player::getY() const {
+	return this->y_;
+}
+
 

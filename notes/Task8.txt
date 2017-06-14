@@ -1,0 +1,25 @@
+===================
+Remaking Cavestory in C++
+Task 8
+Github:
+===================
+
+===================
+Problem
+===================
+	- Now that we have our map built, we need our program to read and understands it
+	- Before that, WE need to understand it
+	
+===================
+Details
+===================
+	- We'll parse XML with TinyXML library
+		
+	
+===================
+Solution
+===================
+	- Create Tile class
+	- Create Tileset struct (in level.h)
+	- Add new variables to Level class
+	- Include TinyXML in level.cpp and implement LoadMap

@@ -41,12 +41,27 @@ public:
 	 */
 	void stopMoving();
 
+	/* const float getX const
+	 * Return x_
+	 */
+	const float getX() const;
+
+	/* const float getY const
+	 * Return y_
+	 */
+	const float getY() const;
+
 private:
 	//Delta of the change in the x and y positions.
 	float dx_, dy_;
 
 	//Current player's facing direction
 	Direction facing_;
+
+	/* bool grounded_
+	 * True if standing in ground or false if the Player is in the air
+	 */
+	bool grounded_;
 };
 
 

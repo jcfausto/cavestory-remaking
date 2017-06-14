@@ -23,9 +23,7 @@ Game::Game() {
 	this->gameLoop();
 }
 
-Game::~Game() {
-
-}
+Game::~Game() {}
 
 //Every frame this method will be executed
 void Game::gameLoop() {

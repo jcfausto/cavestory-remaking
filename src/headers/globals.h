@@ -22,12 +22,31 @@ namespace globals {
 	const std::string CONTENT_TILESETS = "content/tilesets/";
 	const std::string CONTENT_MAPS = "content/maps/";
 
-	const std::string MAPS_MAP_1 = "Map 1";
+	const std::string MAPS_MAP_1 = "Map1";
 
 	const std::string ANIMATION_IDLE_LEFT = "IdleLeft";
 	const std::string ANIMATION_IDLE_RIGHT = "IdleRight";
 	const std::string ANIMATION_RUN_LEFT = "RunLeft";
 	const std::string ANIMATION_RUN_RIGHT = "RunRight";
+}
+
+namespace sides {
+	enum Side {
+		TOP,
+		BOTTOM,
+		LEFT,
+		RIGHT,
+		NONE
+	};
+
+	const inline Side getOppositeSide(Side side) {
+		return
+				side == TOP ? BOTTOM :
+				side == BOTTOM ? TOP :
+				side == LEFT ? RIGHT :
+				side == RIGHT ? LEFT :
+				NONE;
+	}
 }
 
 enum Direction {

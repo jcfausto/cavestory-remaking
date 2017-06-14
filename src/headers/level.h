@@ -9,10 +9,15 @@
 #define HEADERS_LEVEL_H_
 
 #include <string>
+#include <vector>
+
 #include "globals.h"
 #include "graphics.h"
+#include "tile.h"
 
 struct SDL_Texture;
+struct SDL_Rect;
+struct Tileset;
 
 class Level {
 public:
@@ -26,8 +31,13 @@ private:
 	std::string mapName_;
 	Vector2 spawnPoint_;
 	Vector2 size_; //The size of the entire map
+	Vector2 tileSize_;
 
 	SDL_Texture* backgroundTexture_;
+
+	std::vector<Tile> tileList_;
+	std::vector<Tileset> tileSets_;
+
 
 	/* void loadMap
 	 * Loads a map
@@ -35,6 +45,20 @@ private:
 	void loadMap(std::string mapName, Graphics &graphics);
 };
 
+//Tileset structure
+struct Tileset {
+	SDL_Texture* texture;
+	int firstGid;
 
+	Tileset() {
+		this->firstGid = -1;
+		this->texture = NULL;
+	}
+
+	Tileset(SDL_Texture* texture, int firstGid) {
+		this->texture = texture;
+		this->firstGid = firstGid;
+	}
+};
 
 #endif /* HEADERS_LEVEL_H_ */
