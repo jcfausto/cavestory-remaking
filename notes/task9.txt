@@ -1,0 +1,39 @@
+===================
+Remaking Cavestory in C++
+Task 9
+Github:
+===================
+
+===================
+Problem
+===================
+	- We need gravity to be applied to our character
+	- Collision detection
+	- Specify spawn point in Tiled
+	
+===================
+Details
+===================
+	- Gravity constants:
+		GRAVITY = 0.002f;
+		GRAVITY_CAP = 0.8f;
+	- Spawn point: 280, 252
+		
+	
+===================
+Solution
+===================
+	- Add gravity to the player
+	- Create "side" namespace
+	- Create the rectangle class
+	- Add collisionRects to Level
+	- Draw the collisions in Tiled
+	- Parse the collisions
+	- Check tile collisions
+	- Bounding box getCoolisionSide in sprite class
+	- handleTiledCollisions in player class
+	- Finally, add it all to the game class
+	- Draw spawn point in Tiled
+	- Parse it and save it in spawn point
+	- Change spawn point in game class to use it
+	

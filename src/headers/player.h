@@ -41,6 +41,8 @@ public:
 	 */
 	void stopMoving();
 
+	void handleTileCollisions(std::vector<Rectangle> &other);
+
 	/* const float getX const
 	 * Return x_
 	 */
@@ -50,6 +52,7 @@ public:
 	 * Return y_
 	 */
 	const float getY() const;
+
 
 private:
 	//Delta of the change in the x and y positions.

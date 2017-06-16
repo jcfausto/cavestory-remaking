@@ -79,6 +79,35 @@ void Player::update(float elapsedTime) {
 	this->y_ += this->dy_ * elapsedTime;
 }
 
+//Handles collisions with ALL tiles the player is colliding with
+void Player::handleTileCollisions(std::vector<Rectangle> &other) {
+	//Figure out which side the collision happened on and move the player accordingly
+	for (int i = 0; i < other.size(); i++) {
+		sides::Side collisionSide = Sprite::getCollisionSide(other.at(i));
+		if (collisionSide != sides::NONE) {
+			switch (collisionSide) {
+			case sides::TOP:
+				this->y_ = other.at(i).getBottom() + 1;
+				this->dy_ = 0;
+				break;
+			case sides::BOTTOM:
+				this->y_ = other.at(i).getTop() - this->boundingBox_.getHeight() - 1;
+				this->dy_ = 0;
+				this->grounded_ = true;
+				break;
+			case sides::LEFT:
+				this->x_ = other.at(i).getRight() + 1;
+				break;
+			case sides::RIGHT:
+				this->x_ = other.at(i).getLeft() - this->boundingBox_.getWidth() - 1;
+				break;
+			case sides::NONE:
+				break;
+			}
+		}
+	}
+}
+
 const float Player::getX() const {
 	return this->x_;
 }

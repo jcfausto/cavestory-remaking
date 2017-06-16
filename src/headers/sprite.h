@@ -12,6 +12,8 @@
 
 #include <SDL2/SDL.h>
 #include <string>
+#include "rectangles.h"
+#include "globals.h"
 
 class Graphics;
 
@@ -24,9 +26,14 @@ public:
 	virtual void update();
 	void draw(Graphics &graphics, int x, int y);
 
+	const Rectangle getBoundingBox() const;
+	const sides::Side getCollisionSide(Rectangle &other) const;
+
 protected:
 	SDL_Rect sourceRectangle_;
 	SDL_Texture* spriteSheet_;
+
+	Rectangle boundingBox_; //Rectangle that goes around the entire sprite
 
 	float x_, y_;
 private:

@@ -14,6 +14,7 @@
 #include "globals.h"
 #include "graphics.h"
 #include "tile.h"
+#include "rectangles.h"
 
 struct SDL_Texture;
 struct SDL_Rect;
@@ -27,6 +28,8 @@ public:
 	void update(int elapsedTime);
 	void draw(Graphics &graphics);
 
+	std::vector<Rectangle> checkTileCollision(const Rectangle &other);
+
 private:
 	std::string mapName_;
 	Vector2 spawnPoint_;
@@ -37,6 +40,7 @@ private:
 
 	std::vector<Tile> tileList_;
 	std::vector<Tileset> tileSets_;
+	std::vector<Rectangle> collisionRects_;
 
 
 	/* void loadMap
