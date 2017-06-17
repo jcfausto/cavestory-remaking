@@ -13,6 +13,7 @@
 #include "level.h"
 #include "graphics.h"
 #include "globals.h"
+#include "utils.h"
 #include "tinyxml2.h"
 
 using namespace tinyxml2;
@@ -196,7 +197,68 @@ void Level::loadMap(std::string mapName, Graphics &graphics) {
 				}
 			}
 			//Other object groups go here with an else if (ss.str() == "whatever")
+			else if (ss.str() == "spawn points") {
+				XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+				if (pObject != NULL) {
+					while (pObject) {
+						float x = pObject->FloatAttribute("x");
+						float y = pObject->FloatAttribute("y");
+						const char* name = pObject->Attribute("name");
+						std::stringstream ss;
+						ss << name;
+						if (ss.str() == "player") {
+							this->spawnPoint_ = Vector2(std::ceil(x) * globals::SPRITE_SCALE,
+									std::ceil(y) * globals::SPRITE_SCALE);
+						}
 
+						pObject = pObject->NextSiblingElement("object");
+					}
+				}
+			}
+			else if (ss.str() == "slopes") {
+				XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+				if (pObject != NULL) {
+					while (pObject) {
+						std::vector<Vector2> points;
+						Vector2 p1;
+						p1 = Vector2(std::ceil(pObject->FloatAttribute("x")),
+								std::ceil(pObject->FloatAttribute("y")));
+						XMLElement* pPolyline = pObject->FirstChildElement("polyline");
+						if (pPolyline != NULL) {
+							std::vector<std::string> pairs;
+							const char* pointString = pPolyline->Attribute("points");
+
+							std::stringstream ss;
+							ss << pointString;
+
+							Utils::split(ss.str(), pairs, ' ');
+							//Now we have each of the pairs, Loop through the list of pairs
+							//and split them into Vector2s and then store them in our points vector
+							for (int i = 0; i < pairs.size(); i++) {
+								std::vector<std::string> ps;
+								Utils::split(pairs.at(i), ps, ',');
+								std::stringstream point0ss(ps.at(0));
+								std::stringstream point1ss(ps.at(1));
+								int p0, p1;
+								point0ss>>p0;
+								point1ss>>p1;
+								points.push_back(Vector2(p0, p1));
+							}
+						}
+
+						for (int i = 0; i < points.size(); i+=2) {
+							this->slopes_.push_back(Slope(
+									Vector2((p1.x + points.at(i < 2 ? i : i - 1).x) * globals::SPRITE_SCALE,
+											(p1.y + points.at(i < 2 ? i : i - 1).y) * globals::SPRITE_SCALE),
+									Vector2((p1.x + points.at(i < 2 ? i + 1 : i).x) * globals::SPRITE_SCALE,
+											(p1.y + points.at(i < 2 ? i + 1 : i).y) * globals::SPRITE_SCALE)
+							));
+						}
+
+						pObject = pObject->NextSiblingElement("object");
+					}
+				}
+			}
 
 			pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
 		}
@@ -219,6 +281,21 @@ std::vector<Rectangle> Level::checkTileCollision(const Rectangle &other) {
 	for (int i = 0; i < this->collisionRects_.size(); i++) {
 		if (this->collisionRects_.at(i).colidesWith(other)) {
 			others.push_back(this->collisionRects_.at(i));
+		}
+	}
+	return others;
+}
+
+const Vector2 Level::getPlayerSpawnPoint() const {
+	return this->spawnPoint_;
+}
+
+//TODO: Code duplication here!
+std::vector<Slope> Level::checkSlopeCollisions(const Rectangle &other) {
+	std::vector<Slope> others;
+	for (int i = 0; i < this->slopes_.size(); i++) {
+		if (this->slopes_.at(i).collidesWith(other)) {
+			others.push_back(this->slopes_.at(i));
 		}
 	}
 	return others;

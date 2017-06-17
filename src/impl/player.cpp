@@ -11,16 +11,18 @@
 
 namespace player_constants {
 	const float WALK_SPEED = 0.2f;
+	const float JUMP_SPEED = 0.7f;
 
 	//Gravity related constants
 	const float GRAVITY = 0.002f;
 	const float GRAVITY_CAP = 0.8f;
+
 }
 
 Player::Player(){}
 
-Player::Player(Graphics &graphics, float x, float y) :
-	AnimatedSprite(graphics, globals::CONTENT_SPRITES_MYCHAR, 0, 0, 16, 16, x, y, 100),
+Player::Player(Graphics &graphics, Vector2 spawnPoing) :
+	AnimatedSprite(graphics, globals::CONTENT_SPRITES_MYCHAR, 0, 0, 16, 16, spawnPoing.x, spawnPoing.y, 100),
 	dx_(0),
 	dy_(0),
 	facing_(RIGHT),
@@ -62,6 +64,14 @@ void Player::stopMoving() {
 	this->playAnimation(this->facing_ == LEFT ? globals::ANIMATION_IDLE_LEFT : globals::ANIMATION_IDLE_RIGHT);
 }
 
+void Player::jump() {
+	if (this->grounded_) {
+		this->dy_ = 0;
+		this->dy_ -= player_constants::JUMP_SPEED;
+		this->grounded_ = false;
+	}
+}
+
 void Player::animationDone(std::string currentAnimation) {}
 
 void Player::update(float elapsedTime) {
@@ -87,8 +97,15 @@ void Player::handleTileCollisions(std::vector<Rectangle> &other) {
 		if (collisionSide != sides::NONE) {
 			switch (collisionSide) {
 			case sides::TOP:
-				this->y_ = other.at(i).getBottom() + 1;
 				this->dy_ = 0;
+				this->y_ = other.at(i).getBottom() + 1;
+
+				//Stops the player when he's grounded and colliding at the top.
+				if (this->grounded_) {
+					this->dx_ = 0;
+					this->x_ -= this->facing_ == RIGHT ? 0.5f : -0.5f;
+				}
+				this->y_ = other.at(i).getBottom() + 1;
 				break;
 			case sides::BOTTOM:
 				this->y_ = other.at(i).getTop() - this->boundingBox_.getHeight() - 1;
@@ -105,6 +122,29 @@ void Player::handleTileCollisions(std::vector<Rectangle> &other) {
 				break;
 			}
 		}
+	}
+}
+
+//Handles collisions with ALL slopes the player is colliding with
+void Player::handleSlopeCollisions(std::vector<Slope> &other) {
+	for (int i = 0; i < other.size(); i++) {
+		//Calculate where on the slope the player's bottom center is touching
+		//and use y=mx+b to figure our the y position to place him at
+		//First calculate "b" (slope intercept) using one of the points (b = y - mx)
+		int b = (other.at(i).getP1().y - (other.at(i).getSlope() * std::fabs(other.at(i).getP1().x)));
+
+		//Now get player's center x
+		int centerX = this->boundingBox_.getCenterX();
+
+		//Now pass that X into the equation y = mx + b (using our newly found b and x) to get the new y position
+		int newY = (other.at(i).getSlope() * centerX) + b - 8; //8 is temporary to fix a problem
+
+		//Re-position the player to the correct "y"
+		if (this->grounded_) {
+			this->y_ = newY - this->boundingBox_.getHeight();
+			this->grounded_ = true; //TODO: Why set true if it's already true?
+		}
+
 	}
 }
 

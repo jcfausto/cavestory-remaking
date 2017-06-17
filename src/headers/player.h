@@ -11,11 +11,12 @@
 #include "graphics.h"
 #include "animatedsprite.h"
 #include "globals.h"
+#include "slope.h"
 
 class Player : public AnimatedSprite {
 public:
 	Player();
-	Player(Graphics &graphics, float x, float y);
+	Player(Graphics &graphics, Vector2 spawnPoint);
 
 	void draw(Graphics &grapics);
 	void update(float elapsedTime);
@@ -41,7 +42,13 @@ public:
 	 */
 	void stopMoving();
 
+	/* void jump
+	 * Start jumping
+	 */
+	void jump();
+
 	void handleTileCollisions(std::vector<Rectangle> &other);
+	void handleSlopeCollisions(std::vector<Slope> &other);
 
 	/* const float getX const
 	 * Return x_
