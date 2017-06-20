@@ -1,0 +1,31 @@
+===================
+Remaking Cavestory in C++
+Task 11
+Github:
+===================
+
+===================
+Problem
+===================
+	- All of our tiles just sit still
+	- We want tiles that are animated on the screen
+		- We also want them animates in Tiled
+	- Our map insn't quite complete yet (heart container and save disk)
+	
+===================
+Details
+===================
+	- Npc/NpcSym.pbm
+	- Save disk duration: 100
+	- Health duration: 10
+	
+===================
+Solution
+===================
+	- Fix AnimatedSprite update
+	- Convert Npc/NpcSym.pbm to png and put it in tilesets folder
+	- Create tiles in Tiled
+	- Fix the tile loading
+	- Create AnimatedTile class
+	- Parse the animation out of the .tmx file
+	- Modify the level class to use our new AnimatedTile

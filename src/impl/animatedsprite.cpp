@@ -75,8 +75,7 @@ void AnimatedSprite::update(int elapsedTime) {
 			if (this->currentAnimationOnce_ == true) {
 				this->setVisible(false);
 			}
-			this->frameIndex_ = 0;
-			this->animationDone(this->currentAnimation_);
+			this->stopAnimation();
 		}
 	}
 }

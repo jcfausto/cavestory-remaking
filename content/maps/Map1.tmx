@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="16" tileheight="16" nextobjectid="44">
- <tileset firstgid="1" source="../tilesets/PrtCave.tsx"/>
+ <tileset firstgid="1" name="PrtCave" tilewidth="16" tileheight="16" tilecount="80" columns="16">
+  <image source="../tilesets/PrtCave.png" width="256" height="80"/>
+ </tileset>
+ <tileset firstgid="81" name="NpcSym" tilewidth="16" tileheight="16" tilecount="300" columns="20">
+  <image source="../tilesets/NpcSym.png" width="320" height="240"/>
+  <tile id="18">
+   <animation>
+    <frame tileid="18" duration="100"/>
+    <frame tileid="19" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="26">
+   <animation>
+    <frame tileid="26" duration="100"/>
+    <frame tileid="27" duration="100"/>
+    <frame tileid="28" duration="100"/>
+    <frame tileid="29" duration="100"/>
+    <frame tileid="30" duration="100"/>
+    <frame tileid="31" duration="100"/>
+    <frame tileid="32" duration="100"/>
+    <frame tileid="33" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
  <layer name="Background" width="20" height="16">
   <data>
    <tile gid="34"/>
@@ -156,8 +179,8 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="53"/>
+   <tile gid="99"/>
+   <tile gid="107"/>
    <tile gid="49"/>
    <tile gid="50"/>
    <tile gid="49"/>
@@ -663,7 +686,7 @@
   <object id="11" x="48" y="123.5" width="55" height="19"/>
   <object id="12" x="58.5" y="26.5" width="20.6667" height="95.5"/>
   <object id="13" x="176.167" y="30.5" width="16.3333" height="34.5"/>
-  <object id="14" x="239" y="96.5" width="17" height="30"/>
+  <object id="14" x="239" y="96.5" width="17" height="32"/>
   <object id="15" x="103" y="188" width="105" height="15"/>
   <object id="16" x="207.5" y="160" width="15.5" height="28"/>
   <object id="39" x="192" y="86.6667" width="31.3333" height="6.66667"/>
@@ -681,9 +704,6 @@
   </object>
   <object id="19" x="103.273" y="122.909">
    <polyline points="0,0 -24,-14.3636"/>
-  </object>
-  <object id="20" x="230.545" y="127.273">
-   <polyline points="0,0 8.18182,-5.09091"/>
   </object>
   <object id="21" x="159.242" y="64.8788">
    <polyline points="0,0 16.9394,-3.12121"/>

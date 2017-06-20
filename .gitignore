@@ -1,3 +1,4 @@
-Debug/src/
+Debug/src/*
+Debug/content/*
 *.exe
 .settings/*

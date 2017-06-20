@@ -28,6 +28,8 @@ namespace globals {
 	const std::string ANIMATION_IDLE_RIGHT = "IdleRight";
 	const std::string ANIMATION_RUN_LEFT = "RunLeft";
 	const std::string ANIMATION_RUN_RIGHT = "RunRight";
+
+	const std::string UNKNOWN_FILENAME = "UNKNOWN_FILENAME";
 }
 
 namespace sides {

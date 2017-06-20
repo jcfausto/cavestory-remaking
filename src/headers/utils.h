@@ -9,6 +9,7 @@
 #define HEADERS_UTILS_H_
 
 #include <string>
+#include <iostream>
 
 class Utils {
 public:
@@ -31,6 +32,18 @@ public:
 		strs.push_back(txt.substr(initialPos, std::min<int>(pos, txt.size() - (initialPos + 1))));
 
 		return strs.size();
+	}
+
+	/* std::string getFileNameFromFilePath(const std::string filePath)
+	 * In this case, all files will have conventional names that only contains one "."
+	 * There's not need to pass for all different path representations.
+	 */
+	static std::string getFileNameFromFilePath(const std::string &filePath) {
+		std::size_t found = filePath.find_last_of("/\\");
+		std::string fileName = filePath.substr(found+1);
+		found = fileName.find_last_of(".");
+		fileName = fileName.substr(0,found);
+		return found != std::string::npos ? fileName : globals::UNKNOWN_FILENAME;
 	}
 };
 
