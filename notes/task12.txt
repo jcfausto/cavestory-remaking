@@ -1,0 +1,24 @@
+===================
+Remaking Cavestory in C++
+Task 12
+Github:
+===================
+
+===================
+Problem
+===================
+	- Quote needs to be able to look up and down
+	- Quote also needs to look backwards to interact with things
+	
+===================
+Details
+===================
+	- MyChar.png
+	
+===================
+Solution
+===================
+	- Add new animations
+	- Add functions to player for lookUp, stopLookingUp, lookDown, stopLookingDown
+	- Call these function form the game class
+	

@@ -42,6 +42,26 @@ public:
 	 */
 	void stopMoving();
 
+	/* void lookUp
+	 * Will make Quote look up
+	 */
+	void lookUp();
+
+	/* void stopLookingUp
+	 * sets lookingUp_ to false
+	 */
+	void stopLookingUp();
+
+	/* void lookDown
+	 * Will make Quote look down
+	 */
+	void lookDown();
+
+	/* void stopLookingDown
+	 * sets lookingDown_ to false
+	 */
+	void stopLookingDown();
+
 	/* void jump
 	 * Start jumping
 	 */
@@ -72,6 +92,16 @@ private:
 	 * True if standing in ground or false if the Player is in the air
 	 */
 	bool grounded_;
+
+	/* bool lookingUp_
+	 * True if the player is looking up
+	 */
+	bool lookingUp_;
+
+	/* bool lookingDown_
+	 * True if the player is looking down
+	 */
+	bool lookingDown_;
 };
 
 

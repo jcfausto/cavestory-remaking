@@ -28,6 +28,14 @@ namespace globals {
 	const std::string ANIMATION_IDLE_RIGHT = "IdleRight";
 	const std::string ANIMATION_RUN_LEFT = "RunLeft";
 	const std::string ANIMATION_RUN_RIGHT = "RunRight";
+	const std::string ANIMATION_IDLE_LEFT_UP = "idleLeftUp";
+	const std::string ANIMATION_IDLE_RIGHT_UP = "idleRightUp";
+	const std::string ANIMATION_RUN_LEFT_UP = "runLeftUp";
+	const std::string ANIMATION_RUN_RIGHT_UP = "runRightUp";
+	const std::string ANIMATION_LOOK_DOWN_LEFT = "lookDownLeft";
+	const std::string ANIMATION_LOOK_DOWN_RIGHT = "lookDownRight";
+	const std::string ANIMATION_LOOK_BACKWARDS_LEFT = "lookBackwardsLeft";
+	const std::string ANIMATION_LOOK_BACKWARDS_RIGHT = "lookBackwardsRight";
 
 	const std::string UNKNOWN_FILENAME = "UNKNOWN_FILENAME";
 }

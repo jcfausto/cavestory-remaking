@@ -38,6 +38,14 @@ void Player::setupAnimations() {
 	this->addAnimation(1, 0, 16, globals::ANIMATION_IDLE_RIGHT, 16, 16, Vector2(0,0));
 	this->addAnimation(3, 0, 0, globals::ANIMATION_RUN_LEFT, 16, 16, Vector2(0,0));
 	this->addAnimation(3, 0, 16, globals::ANIMATION_RUN_RIGHT, 16, 16, Vector2(0,0));
+	this->addAnimation(1, 3, 0, globals::ANIMATION_IDLE_LEFT_UP, 16, 16, Vector2(0,0));
+	this->addAnimation(1, 3, 16, globals::ANIMATION_IDLE_RIGHT_UP, 16, 16, Vector2(0,0));
+	this->addAnimation(3, 3, 0, globals::ANIMATION_RUN_LEFT_UP, 16, 16, Vector2(0,0));
+	this->addAnimation(3, 3, 16, globals::ANIMATION_RUN_RIGHT_UP, 16, 16, Vector2(0,0));
+	this->addAnimation(1, 6, 0, globals::ANIMATION_LOOK_DOWN_LEFT, 16, 16, Vector2(0,0));
+	this->addAnimation(1, 6, 16, globals::ANIMATION_LOOK_DOWN_RIGHT, 16, 16, Vector2(0,0));
+	this->addAnimation(1, 7, 0, globals::ANIMATION_LOOK_BACKWARDS_LEFT, 16, 16, Vector2(0,0));
+	this->addAnimation(1, 7, 16, globals::ANIMATION_LOOK_BACKWARDS_RIGHT, 16, 16, Vector2(0,0));
 }
 
 
@@ -48,20 +56,68 @@ void Player::draw(Graphics &graphics) {
 /* MOVING FUNCTIONS */
 
 void Player::moveLeft() {
+	if (this->lookingDown_ == true && this->grounded_ == true) {
+		return;
+	}
+
 	this->dx_ = -player_constants::WALK_SPEED;
-	this->playAnimation(globals::ANIMATION_RUN_LEFT);
+
+	if (this->lookingUp_ == false) {
+		this->playAnimation(globals::ANIMATION_RUN_LEFT);
+	}
+
 	this->facing_ = LEFT;
 }
 
 void Player::moveRight() {
+	//TODO: Code duplication here. Look at MoveLeft.
+	if (this->lookingDown_ == true && this->grounded_ == true) {
+		return;
+	}
+
 	this->dx_ = player_constants::WALK_SPEED;
-	this->playAnimation(globals::ANIMATION_RUN_RIGHT);
+
+	if (this->lookingUp_ == false) {
+		this->playAnimation(globals::ANIMATION_RUN_RIGHT);
+	}
+
 	this->facing_ = RIGHT;
 }
 
 void Player::stopMoving() {
 	this->dx_ = 0; //Don't want to move.
-	this->playAnimation(this->facing_ == LEFT ? globals::ANIMATION_IDLE_LEFT : globals::ANIMATION_IDLE_RIGHT);
+
+	if (this->lookingUp_ == false && this->lookingDown_ == false) {
+		this->playAnimation(this->facing_ == LEFT ? globals::ANIMATION_IDLE_LEFT : globals::ANIMATION_IDLE_RIGHT);
+	}
+
+}
+
+void Player::lookUp() {
+	this->lookingUp_ = true;
+	if (this->dx_ == 0) { //Not moving
+		this->playAnimation(this->facing_ == RIGHT ? globals::ANIMATION_IDLE_RIGHT_UP : globals::ANIMATION_IDLE_LEFT_UP );
+	} else { //Moving
+		this->playAnimation(this->facing_ == RIGHT ? globals::ANIMATION_RUN_RIGHT_UP : globals::ANIMATION_RUN_LEFT_UP);
+	}
+}
+
+void Player::stopLookingUp() {
+	this->lookingUp_ = false;
+}
+
+void Player::lookDown() {
+	this->lookingDown_ = true;
+	if (this->grounded_ == true) {
+		//We need to interact (turn backwards)
+		this->playAnimation(this->facing_ == RIGHT ? globals::ANIMATION_LOOK_BACKWARDS_RIGHT : globals::ANIMATION_LOOK_BACKWARDS_LEFT);
+	} else {
+		this->playAnimation(this->facing_ == RIGHT ? globals::ANIMATION_LOOK_DOWN_RIGHT : globals::ANIMATION_LOOK_DOWN_LEFT);
+	}
+}
+
+void Player::stopLookingDown() {
+	this->lookingDown_ = false;
 }
 
 void Player::jump() {
