@@ -89,3 +89,10 @@ void Sprite::setSourceRectangleY(int value) {
 	this->sourceRectangle_.y = value;
 }
 
+void Sprite::setSourceRectangleH(int value) {
+	this->sourceRectangle_.h = value;
+}
+
+void Sprite::setSourceRectangleW(int value) {
+	this->sourceRectangle_.w = value;
+}

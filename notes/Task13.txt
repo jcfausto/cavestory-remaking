@@ -30,6 +30,12 @@ Details
 			height: 8
 			screen pos x: 66
 			screen pos y: 70
+		- currentHealthBar = 0, 25, 39, 5, 83, 72
+		- lvWord = 81, 81, 11, 7, 38, 55
+		- lvNumber = 0, 56, 8, 8, 66, 52
+		- expBar = 0, 72, 40, 8, 83, 52
+		- slash = 72, 48, 8, 8, 100, 36
+		- dashes = 81, 51, 15, 11, 132, 26
 	
 ===================
 Solution
@@ -38,4 +44,7 @@ Solution
 	- Create sprite objects in a new HUD class
 	- Special update/drawing logic
 	- Add it to the game class
+	- Fix FPS
+	- Implement setSourceRectangleW and setSourceRectangleH in Sprite
+	- Add all of the sprite in the current positions
 	

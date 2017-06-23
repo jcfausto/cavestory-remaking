@@ -29,8 +29,8 @@ Player::Player(Graphics &graphics, Vector2 spawnPoing) :
 	grounded_(false),
 	lookingUp_(false),
 	lookingDown_(false),
-	maxHealth_(3),
-	currentHealth_(3)
+	maxHealth_(globals::PLAYER_MAX_HEALTH),
+	currentHealth_(globals::PLAYER_INITIAL_HEALTH)
 {
 	graphics.loadImage(globals::CONTENT_SPRITES_MYCHAR);
 	this->setupAnimations();

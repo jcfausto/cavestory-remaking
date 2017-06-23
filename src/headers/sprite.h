@@ -35,6 +35,9 @@ public:
 	void setSourceRectangleX(int value);
 	void setSourceRectangleY(int value);
 
+	void setSourceRectangleW(int value);
+	void setSourceRectangleH(int valie);
+
 protected:
 	SDL_Rect sourceRectangle_;
 	SDL_Texture* spriteSheet_;

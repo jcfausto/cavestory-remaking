@@ -24,7 +24,13 @@ private:
 	Player player_;
 
 	Sprite healthBarSprite_;
-	Sprite healthNumver1_;
+	Sprite healthNumber1_;
+	Sprite currentHealthBar_;
+	Sprite lvWord_;
+	Sprite lvNumber_;
+	Sprite expBar_;
+	Sprite slash_;
+	Sprite dashes_;
 };
 
 

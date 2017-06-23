@@ -40,8 +40,16 @@ namespace globals {
 
 	//Each number on TextBox sprite file has 8 pixels of width
 	const int SPRITE_TEXTBOX_NUMBER_PIXEL_WIDTH = 8;
+	//Current health bar width is equals to 39px
+	const int SPRITE_TEXTBOX_CURRENT_HEALTH_BAR_WIDTH = 39;
 
 	const std::string UNKNOWN_FILENAME = "UNKNOWN_FILENAME";
+
+	//Max supporter health value is 3
+	const int PLAYER_MAX_HEALTH = 3;
+
+	//Player start the game with full health
+	const int PLAYER_INITIAL_HEALTH = 3;
 }
 
 namespace sides {
