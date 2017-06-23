@@ -80,6 +80,9 @@ public:
 	 */
 	const float getY() const;
 
+	const inline int getMaxHealth() const { return this->maxHealth_; }
+	const inline int getCurrentHealth() const { return this->currentHealth_; }
+
 
 private:
 	//Delta of the change in the x and y positions.
@@ -102,6 +105,16 @@ private:
 	 * True if the player is looking down
 	 */
 	bool lookingDown_;
+
+	/* int maxHealth_
+	 * Represents the health limit
+	 */
+	int maxHealth_;
+
+	/* int currentHealth_
+	 * Represents current health value
+	 */
+	int currentHealth_;
 };
 
 

@@ -11,6 +11,7 @@
 #include "player.h"
 #include "level.h"
 #include "graphics.h"
+#include "hud.h"
 
 class Game {
 	public:
@@ -41,6 +42,11 @@ class Game {
 		 * Represents the current level
 		 */
 		Level level_;
+
+		/* hud_
+		 * HUD displaying game information
+		 */
+		HUD hud_;
 };
 
 #endif /* HEADERS_GAME_H_ */

@@ -17,6 +17,7 @@ namespace globals {
 	const float SPRITE_SCALE = 2.0f;
 
 	const std::string CONTENT_SPRITES_MYCHAR = "content/sprites/MyChar.png";
+	const std::string CONTENT_SPRITES_TEXTBOX = "content/sprites/TextBox.png";
 	const std::string CONTENT_BACKGROUNDS_BKBLUE = "content/backgrounds/bkBlue.png";
 
 	const std::string CONTENT_TILESETS = "content/tilesets/";
@@ -36,6 +37,9 @@ namespace globals {
 	const std::string ANIMATION_LOOK_DOWN_RIGHT = "lookDownRight";
 	const std::string ANIMATION_LOOK_BACKWARDS_LEFT = "lookBackwardsLeft";
 	const std::string ANIMATION_LOOK_BACKWARDS_RIGHT = "lookBackwardsRight";
+
+	//Each number on TextBox sprite file has 8 pixels of width
+	const int SPRITE_TEXTBOX_NUMBER_PIXEL_WIDTH = 8;
 
 	const std::string UNKNOWN_FILENAME = "UNKNOWN_FILENAME";
 }

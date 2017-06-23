@@ -26,7 +26,11 @@ Player::Player(Graphics &graphics, Vector2 spawnPoing) :
 	dx_(0),
 	dy_(0),
 	facing_(RIGHT),
-	grounded_(false)
+	grounded_(false),
+	lookingUp_(false),
+	lookingDown_(false),
+	maxHealth_(3),
+	currentHealth_(3)
 {
 	graphics.loadImage(globals::CONTENT_SPRITES_MYCHAR);
 	this->setupAnimations();
