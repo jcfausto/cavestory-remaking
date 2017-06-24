@@ -15,6 +15,8 @@
 #include "globals.h"
 #include "utils.h"
 #include "tinyxml2.h"
+#include "player.h"
+#include "bat.h"
 
 using namespace tinyxml2;
 
@@ -346,6 +348,27 @@ void Level::loadMap(std::string mapName, Graphics &graphics) {
 						pObject = pObject->NextSiblingElement("object");
 					}
 				}
+			} else if (ss.str() == "enemies") {
+				float x, y;
+				XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+				if (pObject != NULL) {
+					while (pObject) {
+						x = pObject->FloatAttribute("x");
+						y = pObject->FloatAttribute("y");
+
+						const char* name = pObject->Attribute("name");
+						std::stringstream ss;
+						ss << name;
+						if (ss.str() == "bat") {
+							this->enemies_.push_back(new Bat(graphics,
+									Vector2(std::floor(x) * globals::SPRITE_SCALE,
+											std::floor(y) * globals::SPRITE_SCALE)));
+						}
+
+						pObject = pObject->NextSiblingElement("object");
+					}
+				}
+
 			}
 
 			pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
@@ -354,9 +377,13 @@ void Level::loadMap(std::string mapName, Graphics &graphics) {
 
 }
 
-void Level::update(int elapsedTime) {
+void Level::update(int elapsedTime, Player &player) {
 	for (int i = 0; i < this->animatedTileList_.size(); i++) {
 		this->animatedTileList_.at(i).update(elapsedTime);
+	}
+
+	for (int i = 0; i < this->enemies_.size(); i++) {
+		this->enemies_.at(i)->update(elapsedTime, player);
 	}
 }
 
@@ -367,6 +394,10 @@ void Level::draw(Graphics &graphics) {
 
 	for (int i = 0; i < this->animatedTileList_.size(); i++) {
 		this->animatedTileList_.at(i).draw(graphics);
+	}
+
+	for (int i = 0; i < this->enemies_.size(); i++) {
+		this->enemies_.at(i)->draw(graphics);
 	}
 }
 
@@ -401,6 +432,17 @@ std::vector<Door> Level::checkDoorCollisions(const Rectangle &other) {
 	for (int i = 0; i < this->doorList_.size(); i++) {
 		if (this->doorList_.at(i).collidesWith(other)) {
 			others.push_back(this->doorList_.at(i));
+		}
+	}
+	return others;
+}
+
+//TODO: All collisions are copy and paste code! This one use pointers
+std::vector<Enemy*> Level::checkEnemyCollision(const Rectangle &other) {
+	std::vector<Enemy*> others;
+	for (int i = 0; i < this->enemies_.size(); i++) {
+		if (this->enemies_.at(i)->getBoundingBox().collidesWith(other)) {
+			others.push_back(this->enemies_.at(i));
 		}
 	}
 	return others;

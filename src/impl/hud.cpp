@@ -11,6 +11,8 @@
 
 HUD::HUD() {}
 
+//TODO: look at the player parameter here and the player parameter on update function
+//there's something strange here.
 HUD::HUD(Graphics &graphics, Player &player) {
 	this->player_ = player;
 	this->healthBarSprite_ = Sprite(graphics, globals::CONTENT_SPRITES_TEXTBOX, 0, 40, 64, 8, 35, 70);
@@ -23,7 +25,11 @@ HUD::HUD(Graphics &graphics, Player &player) {
 	this->dashes_ = Sprite(graphics, globals::CONTENT_SPRITES_TEXTBOX, 81, 51, 15, 11, 132, 26);
 }
 
-void HUD::update(int elapsedTime) {
+void HUD::update(int elapsedTime, Player &player) {
+	//TODO: I'm updating the player here, but I already have it when the hud was created.
+	//What was not working here that required this additional update?? Analyze this.
+	this->player_ = player;
+
 	this->healthNumber1_.setSourceRectangleX(globals::SPRITE_TEXTBOX_NUMBER_PIXEL_WIDTH * this->player_.getCurrentHealth());
 
 	//Calculate the width of current health bar

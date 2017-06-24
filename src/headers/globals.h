@@ -18,6 +18,8 @@ namespace globals {
 
 	const std::string CONTENT_SPRITES_MYCHAR = "content/sprites/MyChar.png";
 	const std::string CONTENT_SPRITES_TEXTBOX = "content/sprites/TextBox.png";
+	const std::string CONTENT_SPRITES_NPCCEMET = "content/sprites/NpcCemet.png";
+
 	const std::string CONTENT_BACKGROUNDS_BKBLUE = "content/backgrounds/bkBlue.png";
 
 	const std::string CONTENT_TILESETS = "content/tilesets/";
@@ -38,6 +40,14 @@ namespace globals {
 	const std::string ANIMATION_LOOK_BACKWARDS_LEFT = "lookBackwardsLeft";
 	const std::string ANIMATION_LOOK_BACKWARDS_RIGHT = "lookBackwardsRight";
 
+	//Bat aninations
+	const std::string BAT_ANIMATION_FLY_LEFT = "FlyLeft";
+	const std::string BAT_ANIMATION_FLY_RIGHT = "FlyRight";
+	const float BAT_ANIMATION_VERTICAL_STEP = .02;
+	const float BAT_ANIMATION_VERTICAL_MOVEMENT_RANGE = 30; //30 units up or down
+
+	const int BAT_DAMAGE_VALUE = -1;
+
 	//Each number on TextBox sprite file has 8 pixels of width
 	const int SPRITE_TEXTBOX_NUMBER_PIXEL_WIDTH = 8;
 	//Current health bar width is equals to 39px
@@ -50,6 +60,7 @@ namespace globals {
 
 	//Player start the game with full health
 	const int PLAYER_INITIAL_HEALTH = 3;
+
 }
 
 namespace sides {

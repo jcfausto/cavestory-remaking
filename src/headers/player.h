@@ -14,9 +14,12 @@
 #include "slope.h"
 #include "level.h"
 
+class Level;
+
 class Player : public AnimatedSprite {
 public:
 	Player();
+	virtual ~Player();
 	Player(Graphics &graphics, Vector2 spawnPoint);
 
 	void draw(Graphics &grapics);
@@ -76,6 +79,11 @@ public:
 	 */
 	void handleDoorCollision(std::vector<Door> &other, Level &level, Graphics &graphics);
 
+	/* void handleEnemyCollision
+	 * Handle player's collision with enemies
+	 */
+	void handleEnemyCollision(std::vector<Enemy*> &other);
+
 	/* const float getX const
 	 * Return x_
 	 */
@@ -89,6 +97,7 @@ public:
 	const inline int getMaxHealth() const { return this->maxHealth_; }
 	const inline int getCurrentHealth() const { return this->currentHealth_; }
 
+	void gainHealth(int amount);
 
 private:
 	//Delta of the change in the x and y positions.

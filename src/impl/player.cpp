@@ -20,6 +20,7 @@ namespace player_constants {
 }
 
 Player::Player(){}
+Player::~Player() {}
 
 Player::Player(Graphics &graphics, Vector2 spawnPoing) :
 	AnimatedSprite(graphics, globals::CONTENT_SPRITES_MYCHAR, 0, 0, 16, 16, spawnPoing.x, spawnPoing.y, 100),
@@ -219,6 +220,16 @@ void Player::handleDoorCollision(std::vector<Door> &others, Level &level, Graphi
 		}
 	}
 
+}
+
+void Player::handleEnemyCollision(std::vector<Enemy*> &others) {
+	for (int i = 0; i < others.size(); i++) {
+		others.at(i)->touchPlayer(this);
+	}
+}
+
+void Player::gainHealth(int amount) {
+	this->currentHealth_ += amount;
 }
 
 const float Player::getX() const {

@@ -18,6 +18,9 @@
 #include "slope.h"
 #include "animatedtile.h"
 #include "door.h"
+#include "enemy.h"
+
+class Player;
 
 struct SDL_Texture;
 struct SDL_Rect;
@@ -28,12 +31,13 @@ public:
 	Level();
 	Level(std::string mapName, Graphics &graphics);
 	~Level();
-	void update(int elapsedTime);
+	void update(int elapsedTime, Player &player);
 	void draw(Graphics &graphics);
 
 	std::vector<Rectangle> checkTileCollision(const Rectangle &other);
 	std::vector<Slope> checkSlopeCollisions(const Rectangle &other);
 	std::vector<Door> checkDoorCollisions(const Rectangle &other);
+	std::vector<Enemy*> checkEnemyCollision(const Rectangle &other);
 
 	const Vector2 getPlayerSpawnPoint() const;
 
@@ -53,6 +57,9 @@ private:
 	std::vector<AnimatedTile> animatedTileList_;
 	std::vector<AnimatedTileInfo> animatedTileInfos_;
 	std::vector<Door> doorList_;
+
+	//Using a point in order to be able to use Polymorphism
+	std::vector<Enemy*> enemies_;
 
 
 	/* void loadMap
