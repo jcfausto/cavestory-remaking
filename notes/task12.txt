@@ -1,7 +1,7 @@
 ===================
 Remaking Cavestory in C++
 Task 12
-Github:
+Github: https://github.com/jcfausto/cpp-lab
 ===================
 
 ===================
