@@ -20,9 +20,8 @@ using namespace tinyxml2;
 
 Level::Level() {}
 
-Level::Level(std::string mapName, Vector2 spawnPoint, Graphics &graphics) :
+Level::Level(std::string mapName, Graphics &graphics) :
 		mapName_(mapName),
-		spawnPoint_(spawnPoint),
 		size_(Vector2(0,0)),
 		backgroundTexture_(NULL)
 {
@@ -258,6 +257,51 @@ void Level::loadMap(std::string mapName, Graphics &graphics) {
 						pObject = pObject->NextSiblingElement("object");
 					}
 				}
+			} else if (ss.str() == "doors") {
+				//TODO: This code is very repetitive.
+				XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+				if (pObject != NULL) {
+					while (pObject) {
+						float x = pObject->FloatAttribute("x");
+						float y = pObject->FloatAttribute("y");
+						float w = pObject->FloatAttribute("width");
+						float h = pObject->FloatAttribute("height");
+						Rectangle rect = Rectangle(x, y , w, h);
+
+
+						XMLElement* pProperties = pObject->FirstChildElement("properties");
+						if (pProperties != NULL) {
+							while (pProperties) {
+								XMLElement* pProperty = pProperties->FirstChildElement("property");
+								if (pProperty != NULL) {
+									while (pProperty) {
+										const char* name = pProperty->Attribute("name");
+										std::stringstream ss;
+										ss << name;
+										if (ss.str() == "destination") {
+											const char* value = pProperty->Attribute("value");
+											std::stringstream ss2;
+											ss2 << value;
+											Door door = Door(rect, ss2.str());
+											this->doorList_.push_back(door);
+										}
+										pProperty = pProperty->NextSiblingElement("property");
+									}
+
+								}
+								pProperties = pProperties->NextSiblingElement("properties");
+							}
+						}
+
+
+						if (ss.str() == "player") {
+							this->spawnPoint_ = Vector2(std::ceil(x) * globals::SPRITE_SCALE,
+									std::ceil(y) * globals::SPRITE_SCALE);
+						}
+
+						pObject = pObject->NextSiblingElement("object");
+					}
+				}
 			}
 			else if (ss.str() == "slopes") {
 				XMLElement* pObject = pObjectGroup->FirstChildElement("object");
@@ -329,7 +373,7 @@ void Level::draw(Graphics &graphics) {
 std::vector<Rectangle> Level::checkTileCollision(const Rectangle &other) {
 	std::vector<Rectangle> others;
 	for (int i = 0; i < this->collisionRects_.size(); i++) {
-		if (this->collisionRects_.at(i).colidesWith(other)) {
+		if (this->collisionRects_.at(i).collidesWith(other)) {
 			others.push_back(this->collisionRects_.at(i));
 		}
 	}
@@ -346,6 +390,17 @@ std::vector<Slope> Level::checkSlopeCollisions(const Rectangle &other) {
 	for (int i = 0; i < this->slopes_.size(); i++) {
 		if (this->slopes_.at(i).collidesWith(other)) {
 			others.push_back(this->slopes_.at(i));
+		}
+	}
+	return others;
+}
+
+//TODO: All collisions are copy and paste code!
+std::vector<Door> Level::checkDoorCollisions(const Rectangle &other) {
+	std::vector<Door> others;
+	for (int i = 0; i < this->doorList_.size(); i++) {
+		if (this->doorList_.at(i).collidesWith(other)) {
+			others.push_back(this->doorList_.at(i));
 		}
 	}
 	return others;

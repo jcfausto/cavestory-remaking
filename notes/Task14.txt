@@ -1,0 +1,25 @@
+===================
+Remaking Cavestory in C++
+Task 14
+Github: https://github.com/jcfausto/cpp-lab
+===================
+
+===================
+Problem
+===================
+	- We need to make doors give the player access to the next level
+	
+===================
+Details
+===================
+	- Map2.txm 
+
+===================
+Solution
+===================
+	- Add door object to map 1
+	- Create door class
+	- Parse the door info out of the tmx file
+	- Handle the collision of the player with the door
+	
+	

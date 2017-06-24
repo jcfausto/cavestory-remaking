@@ -47,6 +47,11 @@ class Game {
 		 * HUD displaying game information
 		 */
 		HUD hud_;
+
+		/* graphics_
+		 * Storing the current graphics_
+		 */
+		Graphics graphics_;
 };
 
 #endif /* HEADERS_GAME_H_ */
